@@ -814,7 +814,7 @@ class BaseTransformerLayer(BaseModule):
             attn_masks = [None for _ in range(self.num_attn)]
         elif isinstance(attn_masks, torch.Tensor):
             attn_masks = [
-                copy.deepcopy(attn_masks) for _ in range(self.num_attn)
+                attn_masks.clone() for _ in range(self.num_attn)
             ]
             warnings.warn(f'Use same attn_mask in all attentions in '
                           f'{self.__class__.__name__} ')
